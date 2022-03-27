@@ -4,4 +4,5 @@
 为了保证能够长期使用，所以暂不公开核心的算法，只公开基本的算法。
 ![Snipaste_2022-03-27_10-16-31](https://user-images.githubusercontent.com/91483168/160263816-7eb1e2d5-f2ab-46ba-a765-21e8f122652d.png)
 
+体验地址：jiexi.kiwiw.cn
 本项目为开源项目，欢迎大家使用。
