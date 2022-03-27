@@ -1,0 +1,55 @@
+$(function() {
+    function n(e, t) {
+        var n = Date.now();
+        return function(r) {
+            function i() {
+                var s = Date.now()
+                  , o = Math.min((s - n) / e % 1, 1)
+                  , u = Math.floor((s - n) / e);
+                r(o, u),
+                (o < 1 || t) && requestAnimationFrame(i)
+            }
+            requestAnimationFrame(i)
+        }
+    } 
+    var t = {
+        ele: document.querySelector(".dino-img"),
+        foot: {
+            front: {
+                left: document.querySelector(".front.left"),
+                right: document.querySelector(".front.right")
+            },
+            back: {
+                left: document.querySelector(".back.left"),
+                right: document.querySelector(".back.right")
+            }
+        },
+        origin: {
+            front: {
+                left: [95, 290],
+                right: [50, 275]
+            },
+            back: {
+                left: [160, 300],
+                right: [135, 290]
+            }
+        },
+        rotate: function(e, t, n) {
+            var r = this.origin[e][t].join(" ");
+            return this.foot[e][t].setAttribute("transform", "rotate(" + n + " " + r + ")"),
+            this
+        },
+        move: function(e) {
+            this.ele.style.right = e + "px"
+        }
+    }
+      , r = $(window).width() + 200;
+    n(r * 50 / 3, !0)(function(e, n) {
+        var i = Math.sin(Math.PI * e * r / 30) * 10;
+        n % 2 ? (t.ele.style.transform = "",
+        t.rotate("front", "left", i).rotate("front", "right", -i).rotate("back", "left", i).rotate("back", "right", -i),
+        t.move((e - 1) * r)) : (t.ele.style.transform = "matrix(-1,0,0,1,0,0)",
+        t.rotate("front", "left", -i).rotate("front", "right", i).rotate("back", "left", -i).rotate("back", "right", i),
+        t.move(-e * r))
+    })
+});
